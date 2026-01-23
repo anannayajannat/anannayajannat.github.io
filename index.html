@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sanjida Jannat Anannaya | Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --primary: #444;        /* Lighter Black for Name */
+            --accent: #106eea;      /* Royal Blue */
+            --accent-hover: #0a58ca;
+            --green-hover: #198754;
+            --instagram-color: #E1306C;
+            --linkedin-color: #0077b5;
+            --github-color: #333;
+            --scholar-color: #4285f4;
+            --text: #333;
+            --text-muted: #666;
+            --bg: #fff;
+            --light-bg: #f9f9f9;
+            --border-color: #e5e5e5;
+            --card-shadow: 0 2px 4px rgba(0,0,0,0.04);
+            --hover-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+        * { box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: var(--text); margin: 0; padding: 0; background-color: var(--bg); }
+        a { text-decoration: none; color: var(--accent); transition: 0.2s; }
+        a:hover { color: var(--accent-hover); }
+
+        /* --- LAYOUT --- */
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+        section { padding: 35px 0; border-bottom: 1px solid #f0f0f0; }
+        h2 { font-size: 1.6rem; color: #000; margin-bottom: 25px; font-weight: 700; }
+
+        /* --- HEADER --- */
+        header { background: var(--light-bg); padding: 50px 0; border-bottom: 1px solid #ddd; }
+        .header-content { display: flex; align-items: flex-start; gap: 40px; }
+        
+        /* Image Left */
+        .header-image { flex: 0 0 200px; }
+        .profile-pic { 
+            width: 200px; height: 200px; 
+            object-fit: cover; 
+            border-radius: 50%; 
+            border: 5px solid #fff; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15); 
+        }
+
+        /* Text Right */
+        .header-text { flex: 1; margin-top: 10px; }
+        .profile-name { font-size: 2.6rem; font-weight: 800; margin: 0 0 5px 0; color: var(--primary); line-height: 1.1; letter-spacing: -0.5px; }
+        
+        .profile-designation { 
+            font-size: 1.25rem; 
+            color: #555; 
+            margin-bottom: 12px; 
+            font-weight: 500; 
+        }
+        .profile-designation span { color: var(--accent); font-weight: 600; }
+
+        .header-meta { color: #666; font-size: 0.95rem; margin-bottom: 20px; display: flex; align-items: center; flex-wrap: wrap; gap: 15px; }
+        .header-meta span { display: flex; align-items: center; gap: 6px; }
+        .icon-loc { color: #dc3545; } 
+        .icon-mail { color: #198754; } 
+
+        /* Justified Bio */
+        .header-bio { color: #444; margin-bottom: 25px; line-height: 1.7; font-size: 1rem; max-width: 750px; text-align: justify; }
+
+        /* --- HEADER BUTTONS --- */
+        .btn-group { display: flex; gap: 12px; }
+        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 24px; border-radius: 6px; font-weight: 600; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.5px; transition: all 0.2s ease; cursor: pointer; background: #fff; }
+        
+        .btn-connect { border: 1px solid var(--accent); color: var(--accent); } 
+        .btn-connect:hover { background: var(--accent); color: #fff; }
+        
+        .btn-email { border: 1px solid var(--green-hover); color: var(--green-hover); }
+        .btn-email:hover { background: var(--green-hover); color: #fff; }
+
+        /* --- CARDS --- */
+        .dynamic-card {
+            background: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 24px;
+            transition: all 0.2s ease-in-out;
+            box-shadow: var(--card-shadow);
+            position: relative;
+        }
+        .dynamic-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: var(--hover-shadow);
+            z-index: 2;
+        }
+
+        /* --- EXPERIENCE --- */
+        .experience-card { margin-bottom: 20px; }
+        .item-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; border-bottom: 1px solid #f5f5f5; padding-bottom: 10px; }
+        .item-title { font-weight: 700; font-size: 1.15rem; color: #000; }
+        .item-meta { color: var(--text-muted); font-size: 0.9rem; }
+        .job-details { list-style-type: disc; padding-left: 18px; color: #444; text-align: justify; font-size: 0.95rem; margin: 0; line-height: 1.6;}
+        .job-details li { margin-bottom: 6px; }
+
+        /* --- EDUCATION --- */
+        .edu-card { display: flex; gap: 25px; align-items: flex-start; }
+        .edu-logo {
+            flex: 0 0 60px; height: 60px;
+            background: #fff0e6; color: #d35400;
+            border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.8rem;
+        }
+        .edu-content { flex: 1; }
+        .edu-school { font-size: 1.2rem; font-weight: 700; color: #000; }
+        .edu-degree { font-size: 1.05rem; font-weight: 600; color: #333; margin-bottom: 5px; }
+        .edu-time { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 10px; }
+        .edu-details { margin-top: 8px; font-size: 0.95rem; color: #555; padding-left: 18px;}
+
+        /* --- SKILLS --- */
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 20px; }
+        .skill-category { height: 100%; display: flex; flex-direction: column; }
+        .cat-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 15px; color: #000; }
+        .pill-container { display: flex; flex-wrap: wrap; gap: 10px; }
+        .tech-pill {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: #fff; border: 1px solid #ddd;
+            padding: 6px 14px; border-radius: 50px;
+            font-size: 0.9rem; color: #333; transition: 0.1s;
+        }
+        .tech-pill:hover { border-color: var(--accent); background: #f0f8ff; color: var(--accent); }
+
+        /* --- PROJECTS --- */
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; }
+        .project-card { display: flex; flex-direction: column; height: 100%; }
+        .project-card h3 { margin-top: 0; font-size: 1.15rem; color: var(--accent); margin-bottom: 10px; font-weight: 600; }
+        .project-card p { flex-grow: 1; text-align: justify; font-size: 0.95rem; color: #555; line-height: 1.6; }
+        .tech-stack { margin-top: 15px; font-size: 0.85rem; color: #555; font-family: monospace; background: #f8f9fa; padding: 8px; border-radius: 4px; }
+
+        /* --- PUBLICATIONS --- */
+        .pub-grid { display: flex; flex-direction: column; gap: 15px; }
+        .pub-card { padding: 20px; }
+        .pub-title { font-size: 1.1rem; font-weight: 700; color: #000; margin-bottom: 6px; line-height: 1.3; }
+        .pub-meta { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 10px; }
+        .pub-authors { font-size: 0.95rem; color: #444; margin-bottom: 15px; line-height: 1.5; }
+        .btn-view-paper {
+            display: inline-flex; align-items: center; gap: 6px;
+            border: 1px solid #ddd; padding: 6px 14px;
+            border-radius: 4px; font-size: 0.85rem; color: #555; transition: 0.2s;
+            background: #fff;
+        }
+        .btn-view-paper:hover { border-color: var(--accent); color: var(--accent); }
+
+        /* --- ACHIEVEMENTS --- */
+        .achieve-list { display: flex; flex-direction: column; gap: 12px; }
+        .achieve-item { display: flex; justify-content: space-between; align-items: center; padding: 16px 20px;}
+        .achieve-title { font-weight: 600; font-size: 1rem; color: #333; }
+        .achieve-date { font-size: 0.9rem; color: var(--text-muted); white-space: nowrap; margin-left: 15px;}
+
+        /* --- SHOW MORE --- */
+        .show-more-container { text-align: center; margin-top: 20px; }
+        .btn-show-more {
+            background: none; border: none;
+            color: var(--accent); font-weight: 600; font-size: 0.95rem;
+            cursor: pointer; display: inline-flex; align-items: center; gap: 6px;
+            padding: 5px 10px;
+        }
+        .btn-show-more:hover { text-decoration: underline; }
+        .hidden-content { display: none; }
+
+        /* --- CONNECT SECTION (New) --- */
+        .connect-section { border-bottom: none; }
+        .connect-card {
+            background: #fff;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: var(--card-shadow);
+        }
+        .connect-header {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #f0f0f0;
+            color: #000;
+        }
+        .connect-grid {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .btn-social {
+            flex: 1;
+            min-width: 160px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 12px 20px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            background: #fff;
+            color: #555;
+            font-weight: 600;
+            transition: all 0.2s;
+            font-size: 0.95rem;
+        }
+        .btn-social:hover { transform: translateY(-3px); box-shadow: 0 4px 10px rgba(0,0,0,0.08); color: #fff; }
+
+        /* Specific Social Colors */
+        .social-linkedin { color: var(--linkedin-color); border-color: var(--linkedin-color); }
+        .social-linkedin:hover { background: var(--linkedin-color); }
+        
+        .social-github { color: var(--github-color); border-color: var(--github-color); }
+        .social-github:hover { background: var(--github-color); }
+        
+        .social-scholar { color: var(--scholar-color); border-color: var(--scholar-color); }
+        .social-scholar:hover { background: var(--scholar-color); }
+        
+        .social-instagram { color: var(--instagram-color); border-color: var(--instagram-color); }
+        .social-instagram:hover { background: var(--instagram-color); }
+
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content { flex-direction: column; align-items: center; text-align: center; }
+            .header-image { order: 1; margin-bottom: 20px; }
+            .header-text { order: 2; margin-top: 0; }
+            .header-bio { text-align: center; margin-left: auto; margin-right: auto;}
+            .btn-group, .header-meta { justify-content: center; }
+            .edu-card { flex-direction: column; align-items: center; text-align: center; }
+            .item-header { flex-direction: column; align-items: flex-start; }
+            .achieve-item { flex-direction: column; align-items: flex-start; gap: 5px; }
+            .achieve-date { margin-left: 0; }
+            .connect-grid { flex-direction: column; }
+        }
+        
+        footer { text-align: center; padding: 40px; font-size: 0.9rem; color: #888; border-top: 1px solid #f0f0f0; margin-top: 30px;}
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="header-content">
+                
+                <div class="header-image">
+                    <img src="profile.jpg" alt="Sanjida Jannat" class="profile-pic">
+                </div>
+
+                <div class="header-text">
+                    <h1 class="profile-name">Sanjida Jannat Anannaya</h1>
+                    
+                    <div class="profile-designation">
+                        Software Engineer | Researcher | <span>Data Science Enthusiast</span>
+                    </div>
+
+                    <div class="header-meta">
+                        <span><i class="fas fa-map-marker-alt icon-loc"></i> Dhaka, Bangladesh</span>
+                        <span><i class="fas fa-envelope icon-mail"></i> <a href="mailto:anannaya.jannat@gmail.com" style="color:inherit;">anannaya.jannat@gmail.com</a></span>
+                    </div>
+
+                    <p class="header-bio">
+                        Software Engineer and Researcher driven by the curiosity to solve complex puzzles through data. Specializing in Deep Learning and Quantum ML, I focus on bridging the gap between progressive research and scalable, real-world applications. I love exploring new technologies, building robust pipelines, and continuously learning to deliver solutions that matter.<br><br>
+                        <strong>Apart from work, I enjoy drawing, photography, and adventure.</strong>
+                    </p>
+                    
+                    <div class="btn-group">
+                        <a href="https://linkedin.com/in/anannaya2" target="_blank" class="btn btn-connect">
+                            <i class="fab fa-linkedin"></i> Connect
+                        </a>
+                        <a href="mailto:anannaya.jannat@gmail.com" class="btn btn-email">
+                            <i class="fas fa-envelope"></i> Email
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <section>
+            <h2>Experience</h2>
+            <div class="dynamic-card experience-card">
+                <div class="item-header">
+                    <span class="item-title">Research Assistant</span>
+                    <span class="item-meta">Institute of Advanced Research (IAR) | North South University | 2025 </span>
+                </div>
+                <ul class="job-details">
+                    <li><strong>Out-of-Distribution (OOD) Detection:</strong> Designed a Hybrid Quantum-Classical CNN integrated with multi-layer feature extraction for robust anomaly detection.</li>
+                    <li><strong>Advanced Architecture:</strong> Engineered the model by incorporating CBAM Attention mechanisms and Residual Squeeze-and-Excitation (ResidualSE) blocks.</li>
+                    <li><strong>Key Achievement:</strong> Achieved top-tier performance with the <strong>Hybrid + ResidualSE</strong> configuration, securing <strong>95.56% Accuracy</strong> and <strong>99.29% AUC-ROC</strong>.</li>
+                    <li><strong>Model Optimization:</strong> Successfully reduced model loss to 0.1655 while maintaining high Recall (95.50%) and Precision (95.67%).</li>
+                </ul>
+            </div>
+            <div class="dynamic-card experience-card">
+                <div class="item-header">
+                    <span class="item-title">Undergraduate Teaching Assistant</span>
+                    <span class="item-meta">United International University | 2024 - 2025</span>
+                </div>
+                <ul class="job-details">
+                    <li>Mentored students in core programming concepts including <strong>C/C++, Java, OOP, and Data Structures & Algorithms</strong>.</li>
+                    <li>Supervised practical <strong>lab assessments, graded assignments, and provided one-on-one debugging assistance</strong>.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2>Education</h2>
+            <div class="dynamic-card edu-card">
+                <div class="edu-logo">
+                    <i class="fas fa-university"></i>
+                </div>
+                <div class="edu-content">
+                    <div class="edu-school">United International University</div>
+                    <div class="edu-degree">Bachelor of Science in Computer Science and Engineering</div>
+                    <div class="edu-time">2020 - 2024</div>
+                    <div class="edu-grade">CGPA: 3.71 / 4.00</div>
+                    <ul class="edu-details">
+                        <li><strong>Major:</strong> Data Science & Software Engineering</li>
+                        <li>Awarded Merit-Based Scholarship 11 times (100%, 50%, 25%).</li>
+                        <li>Selected as an Undergraduate Teaching Assistant for outstanding academic performance.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Technologies & Tools</h2>
+            <div class="skills-grid">
+                <div class="dynamic-card skill-category">
+                    <div class="cat-title">Programming Languages</div>
+                    <div class="pill-container">
+                        <span class="tech-pill"><i class="fab fa-python" style="color:#3776ab;"></i> Python</span>
+                        <span class="tech-pill"><i class="fab fa-java" style="color:#e76f00;"></i> Java</span>
+                        <span class="tech-pill"><i class="fas fa-code"></i> C++</span>
+                        <span class="tech-pill"><i class="fab fa-js" style="color:#f7df1e;"></i> JavaScript</span>
+                        <span class="tech-pill"><i class="fas fa-database"></i> SQL</span>
+                    </div>
+                </div>
+
+                <div class="dynamic-card skill-category">
+                    <div class="cat-title">Data Science & ML</div>
+                    <div class="pill-container">
+                        <span class="tech-pill"><i class="fas fa-brain" style="color:#ee4c2c;"></i> PyTorch</span>
+                        <span class="tech-pill"><i class="fas fa-layer-group" style="color:#ff6f00;"></i> TensorFlow</span>
+                        <span class="tech-pill"><i class="fas fa-chart-line"></i> Scikit-Learn</span>
+                        <span class="tech-pill"><i class="fas fa-table"></i> Pandas</span>
+                        <span class="tech-pill"><i class="fas fa-calculator"></i> NumPy</span>
+                        <span class="tech-pill"><i class="fas fa-atom"></i> PennyLane</span>
+                    </div>
+                </div>
+                
+                <div class="dynamic-card skill-category hidden-content" id="extraTools1">
+                    <div class="cat-title">Web & Frameworks</div>
+                    <div class="pill-container">
+                        <span class="tech-pill"><i class="fab fa-react" style="color:#61dafb;"></i> React.js</span>
+                        <span class="tech-pill"><i class="fab fa-node-js" style="color:#339933;"></i> Node.js</span>
+                        <span class="tech-pill"><i class="fas fa-leaf" style="color:#6db33f;"></i> Spring Boot</span>
+                        <span class="tech-pill"><i class="fab fa-python"></i> Django</span>
+                    </div>
+                </div>
+
+                <div class="dynamic-card skill-category hidden-content" id="extraTools2">
+                    <div class="cat-title">Cloud & Tools</div>
+                    <div class="pill-container">
+                        <span class="tech-pill"><i class="fab fa-docker" style="color:#2496ed;"></i> Docker</span>
+                        <span class="tech-pill"><i class="fab fa-git-alt" style="color:#f05032;"></i> Git</span>
+                        <span class="tech-pill"><i class="fas fa-database" style="color:#336791;"></i> PostgreSQL</span>
+                        <span class="tech-pill"><i class="fas fa-database" style="color:#00758f;"></i> MySQL</span>
+                        <span class="tech-pill"><i class="fas fa-project-diagram"></i> Jira</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="show-more-container">
+                <button class="btn-show-more" onclick="toggleSection('extraTools1', 'extraTools2', this)">
+                    Show more <i class="fas fa-chevron-down"></i>
+                </button>
+            </div>
+        </section>
+
+        <section>
+            <h2>Achievements</h2>
+            <div class="achieve-list">
+                <div class="dynamic-card achieve-item">
+                    <span class="achieve-title">1st Runner-up - CodeKoro (Software Engineering Project)</span>
+                    <span class="achieve-date">Feb 2024</span>
+                </div>
+                <div class="dynamic-card achieve-item">
+                    <span class="achieve-title">1st Runner-up - Smart Prison (Electronics Project)</span>
+                    <span class="achieve-date">Nov 2023</span>
+                </div>
+                <div class="dynamic-card achieve-item">
+                    <span class="achieve-title">2nd Runner-up - PrintKoro (System Analysis Project)</span>
+                    <span class="achieve-date">July 2023</span>
+                </div>
+
+                <div class="hidden-content" id="extraAchieve">
+                    <div class="dynamic-card achieve-item" style="margin-top:10px;">
+                        <span class="achieve-title">General Scholarship - Higher Secondary Certificate (HSC)</span>
+                        <span class="achieve-date">2018</span>
+                    </div>
+                    <div class="dynamic-card achieve-item" style="margin-top:10px;">
+                        <span class="achieve-title">General Scholarship - Secondary School Certificate (SSC)</span>
+                        <span class="achieve-date">2016</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="show-more-container">
+                <button class="btn-show-more" onclick="toggleSimple('extraAchieve', this)">
+                    Show more <i class="fas fa-chevron-down"></i>
+                </button>
+            </div>
+        </section>
+
+        <section>
+            <h2>Projects</h2>
+            <div class="projects-grid">
+                <div class="dynamic-card project-card">
+                    <h3><a href="https://github.com/anannayajannat/Brew-Breeze/tree/4cf5f94f48766c81bc6d8dda65297d917b3bd084" target="_blank"><i class="fas fa-coffee"></i> Brew-Breeze Shop</a></h3>
+                    <p>A full-stack monolithic web application for a coffee dessert shop, enabling users to browse products, interact with the system, manage carts, and oversee orders via an admin dashboard.</p>
+                    <div class="tech-stack">Spring Boot, Java, React, PostgreSQL</div>
+                </div>
+                <div class="dynamic-card project-card">
+                    <h3><a href="https://github.com/anannayajannat/NorthStarLight/tree/169f60e8b6c8b6bf3ee31eac7a3487e2c06837d1" target="_blank"><i class="fas fa-shoe-prints"></i> NorthStarLight</a></h3>
+                    <p>A modular, microservices-based e-commerce platform for shoes. Each service is independently deployable, Dockerized, and supports centralized logging.</p>
+                    <div class="tech-stack">Node.js, Microservices, Docker</div>
+                </div>
+                <div class="dynamic-card project-card">
+                    <h3><a href="https://github.com/anannayajannat/Codekoro-FYDP" target="_blank"><i class="fas fa-code-branch"></i> CodeKoro</a></h3>
+                    <p>University-specific competitive programming platform for UIU students with real-time contests and automated grading.</p>
+                    <div class="tech-stack">Django, React, PostgreSQL, Docker</div>
+                </div>
+                <div class="dynamic-card project-card">
+                    <h3><a href="#" target="_blank"><i class="fas fa-print"></i> PrintKoro</a></h3>
+                    <p>Self-service printing system allowing users to upload and print documents via QR codes without sharing files.</p>
+                    <div class="tech-stack">Android SDK, Django, Node.js</div>
+                </div>
+                <div class="dynamic-card project-card">
+                    <h3><a href="#" target="_blank"><i class="fas fa-microchip"></i> Smart Prison System</a></h3>
+                    <p>IoT automation system for prison operations such as meal distribution, health tracking, and visitor control.</p>
+                    <div class="tech-stack">Arduino, ESP32, NFC, IoT Sensors</div>
+                </div>
+                <div class="dynamic-card project-card">
+                    <h3><a href="https://github.com/anannayajannat/Student-Surface" target="_blank"><i class="fas fa-user-graduate"></i> Student Surface</a></h3>
+                    <p>Productivity platform tailored for UIU students offering access to tutorial content, academic tracking, and portfolios.</p>
+                    <div class="tech-stack">HTML, CSS, PHP, SQL</div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Publications</h2>
+            <div class="pub-grid">
+                
+                <div class="dynamic-card pub-card">
+                    <div class="pub-title">ElectroSortNet: A Novel CNN Approach for E-Waste Classification and IoT-Driven Separation System</div>
+                    <div class="pub-meta">Published in ICAEEE 2024</div>
+                    <div class="pub-authors">Hasibul Hasan Rupok, Nahian Sourov, <strong>Sanjida Jannat Anannaya</strong>, Amina Afroz, Mahmudul Hasan Bipul, Dr. Md. Motaharul Islam</div>
+                    <a href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=jdS2fJ0AAAAJ&citation_for_view=jdS2fJ0AAAAJ:u5HHmVD_uO8C" class="btn-view-paper" target="_blank"><i class="fas fa-external-link-alt"></i> View Paper</a>
+                </div>
+
+                <div class="dynamic-card pub-card">
+                    <div class="pub-title">Bagging-Based Ensemble Learning Framework for Multiclass Pox Skin Lesion Detection</div>
+                    <div class="pub-meta">Accepted in ICCIT 2024</div>
+                    <div class="pub-authors">Mohammad Abu Obaida Mullick, <strong>Sanjida Jannat Anannaya</strong>, A. Tamid, S. Afrin, J. Purification, Ms. Humaira Anzum</div>
+                    <!-- <a href="#" class="btn-view-paper"><i class="fas fa-external-link-alt"></i> View Paper</a> -->
+                </div>
+
+                <div class="dynamic-card pub-card">
+                    <div class="pub-title">AGY Launcher: Designing an Accessible Smartphone Launcher for Elderly Users</div>
+                    <div class="pub-meta">Reviewed in CSCW 2025</div>
+                    <div class="pub-authors">Mohammad Abu Obaida Mullick, <strong>Sanjida Jannat Anannaya</strong>, Sama Binte Sharif, Reazur Rahman Ratul, Tamzid Hossain</div>
+                    <!-- <a href="#" class="btn-view-paper"><i class="fas fa-external-link-alt"></i> View Paper</a> -->
+                </div>
+
+                <div class="hidden-content" id="extraPubs">
+                    
+                    <div class="dynamic-card pub-card" style="margin-bottom:15px;">
+                        <div class="pub-title">Quantum Assisted Deep Learning: Addressing the Generalization and Adaptation Challenges</div>
+                        <div class="pub-meta">Research Proposal (Submitted to IAR)</div>
+                        <div class="pub-authors"><strong>Sanjida Jannat Anannaya</strong>, Dr. NIMI</div>
+                        <!-- <a href="#" class="btn-view-paper"><i class="fas fa-file-alt"></i> View Proposal</a> -->
+                    </div>
+
+                    <div class="dynamic-card pub-card" style="margin-bottom:15px;">
+                        <div class="pub-title">"Can AI help me with healthy eating?" Designing a Personalized LLM-based Food Recommender System</div>
+                        <div class="pub-meta">Reviewed in UIST 2025</div>
+                        <div class="pub-authors">Mohammad Abu Obaida Mullick, Sama Binte Sharif, <strong>Sanjida Jannat Anannaya</strong>, Dr. Jannatun Noor Mukta, Iftekharul Abedeen</div>
+                        <!-- <a href="#" class="btn-view-paper"><i class="fas fa-external-link-alt"></i> View Paper</a> -->
+                    </div>
+
+                    <div class="dynamic-card pub-card" style="margin-bottom:15px;">
+                        <div class="pub-title">An Innovative Online Judge for UIU's Competitive Programming</div>
+                        <div class="pub-meta">Undergraduate Thesis (2024)</div>
+                        <div class="pub-authors">Abir Hossain Amee, Md Iftekhar Hossain, Sara Ferdous Khan, <strong>Sanjida Jannat Anannaya</strong>, Upama Roy</div>
+                        <!-- <a href="#" class="btn-view-paper"><i class="fas fa-book"></i> View Thesis</a> -->
+                    </div>
+
+                    <div class="dynamic-card pub-card">
+                        <div class="pub-title">"Can I Enjoy My Hobbies Like Before?" Randomized To-Do App for Improving Hobby Engagement</div>
+                        <div class="pub-meta">Reviewed in CHI LBW</div>
+                        <div class="pub-authors">Mohammad Abu Obaida Mullick, <strong>Sanjida Jannat Anannaya</strong>, Dr. Jannatun Noor Mukta, Iftekharul Abedeen</div>
+                        <!-- <a href="#" class="btn-view-paper"><i class="fas fa-external-link-alt"></i> View Paper</a> -->
+                    </div>
+                </div>
+
+                <div class="show-more-container">
+                    <button class="btn-show-more" onclick="toggleSimple('extraPubs', this)">
+                        Show more <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="connect-section">
+            <div class="dynamic-card connect-card">
+                <div class="connect-header">Connect With Me</div>
+                <div class="connect-grid">
+                    
+                    <a href="https://linkedin.com/in/anannaya2" target="_blank" class="btn-social social-linkedin">
+                        <i class="fab fa-linkedin"></i> LinkedIn
+                    </a>
+                    
+                    <a href="https://github.com/anannayajannat" target="_blank" class="btn-social social-github">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                    
+                    <a href="https://scholar.google.com/citations?user=jdS2fJ0AAAAJ&hl=en" target="_blank" class="btn-social social-scholar">
+                        <i class="fas fa-graduation-cap"></i> Google Scholar
+                    </a>
+
+                    <a href="https://www.instagram.com/youknowinside/" target="_blank" class="btn-social social-instagram">
+                        <i class="fab fa-instagram"></i> Instagram
+                    </a>
+
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Sanjida Jannat Anannaya. Hosted on GitHub Pages.</p>
+    </footer>
+
+    <script>
+        // Toggle for Achievements and Publications
+        function toggleSimple(id, btn) {
+            var el = document.getElementById(id);
+            if (el.style.display === "block") {
+                el.style.display = "none";
+                btn.innerHTML = 'Show more <i class="fas fa-chevron-down"></i>';
+            } else {
+                el.style.display = "block";
+                btn.innerHTML = 'Show less <i class="fas fa-chevron-up"></i>';
+            }
+        }
+
+        // Toggle for Skills (two hidden divs)
+        function toggleSection(id1, id2, btn) {
+            var el1 = document.getElementById(id1);
+            var el2 = document.getElementById(id2);
+            var isHidden = el1.style.display === "none" || el1.style.display === "";
+
+            if (isHidden) {
+                el1.style.display = "flex"; 
+                el2.style.display = "flex";
+                btn.innerHTML = 'Show less <i class="fas fa-chevron-up"></i>';
+            } else {
+                el1.style.display = "none";
+                el2.style.display = "none";
+                btn.innerHTML = 'Show more <i class="fas fa-chevron-down"></i>';
+            }
+        }
+    </script>
+
+</body>
+</html>
